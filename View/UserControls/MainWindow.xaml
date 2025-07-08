@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="DocumentsModule.View.UserControls.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocumentsModule.View.UserControls"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Background" Value="Transparent"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="#F8FAFD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="/DocumentsModule;component/LogoSDS.png" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"  Panel.ZIndex="1"  Margin="0,0,0,10" RenderOptions.BitmapScalingMode="HighQuality" />
+            <!--<Label Content='ממס"ר' Grid.Row="0" VerticalAlignment="Center" FlowDirection="RightToLeft" Width="75"  HorizontalAlignment="Right" Margin="0,0,75,0" FontFamily="Calibri" FontSize="20"/>-->
+
+            <Image x:Name="NewDoc" Source="/DocumentsModule;component/NewWithText.png" Grid.Row="1" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="35,25,0,0" RenderOptions.BitmapScalingMode="HighQuality"
+                   MouseLeftButtonUp="NewDoc_MouseLeftButtonUp"/>
+            
+            <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,200,30,0" Cursor="Hand" >
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Image Source="/DocumentsModule;component/Resources/homeRed.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="27" Height="24"/>
+                    <Button Content="המסמכים שלי" Background="Transparent" Margin="10,0,0,0" BorderThickness="0" FontFamily="Calibri" FontSize="18" Click="Home_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,40,0,0" >
+                    <Image Source="/DocumentsModule;component/Resources/move to sign.png" RenderOptions.BitmapScalingMode="HighQuality" Width="27" Height="24" MouseLeftButtonDown="MoveToSign_Click"/>
+                    <Button x:Name="MoveToSign" Content="העברה לחתימה" Background="Transparent" Margin="10,0,0,0" BorderThickness="0" Click="MoveToSign_Click" FontFamily="Calibri" FontSize="18"/> 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,40,0,0">
+                    <Image Source="/DocumentsModule;component/Resources/sign.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="27" Height="24" MouseLeftButtonDown="DocumentsSign_Click"/>
+                    <Button x:Name="DocumentsSign" Content="מסמכים לחתימתי" Background="Transparent" Margin="10,0,0,0" BorderThickness="0" FontFamily="Calibri" FontSize="18" Click="DocumentsSign_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Margin="0,40,0,0">
+                    <Image Source="/DocumentsModule;component/Resources/mailRed.png" RenderOptions.BitmapScalingMode="HighQuality"  Width="27" Height="24" MouseLeftButtonDown="Publish_Click"/>
+                    <Button x:Name="Publish" Content="להפצה" Background="Transparent" Margin="10,0,0,0" BorderThickness="0" FontFamily="Calibri" FontSize="18" Click="Publish_Click"/>
+                </StackPanel>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <local:ToolBar Grid.Row="0" Loaded="ToolBar_Loaded" Margin="0,0,0,0" x:Name="toolBarUC"/>
+            <local:DataGridDocs Grid.Row="1" Height="920"
+                            Margin="0" 
+                            BorderBrush="Transparent" BorderThickness="0"
+                            Loaded="DataGridDocs_Loaded"/>
+        </Grid>
+        
+    </Grid>
+</UserControl>

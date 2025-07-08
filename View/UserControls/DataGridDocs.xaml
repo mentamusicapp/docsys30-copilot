@@ -1,0 +1,644 @@
+﻿<UserControl x:Class="DocumentsModule.View.UserControls.DataGridDocs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocumentsModule.View.UserControls"
+             mc:Ignorable="d" d:DesignWidth="800" Height="450">
+
+    <UserControl.Resources>
+        <local:PercentageConverter x:Key="PercentageConverter"/>
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="mouseontop" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Name="Tooltip" TargetType="ToolTip">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="ToolTip" Value="">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="StyleDataGrid" TargetType="DataGrid">
+            <Setter Property="HeadersVisibility" Value="None"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="Background" Value="#F8FAFD"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0,0,0,0"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="RowBackground" Value="Transparent"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="#F8FAFD">
+    <TabControl Name="TabControlDocs" DockPanel.Dock="Top" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FlowDirection="RightToLeft" BorderThickness="0" BorderBrush="Transparent" SelectionChanged="TabControl_SelectionChanged">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="Background" Value="#F8FAFD"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{TemplateBinding Content}" TextDecorations="Underline" Foreground="Black" FontFamily="Calibri" FontSize="18" Background="#F8FAFD"></TextBlock>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{TemplateBinding Content}" Foreground="Black" FontFamily="Calibri" FontSize="18" FontWeight="Light"></TextBlock>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="הכל" Background="#F8FAFD">
+                <DataGrid Name="dataGridDocs" Style="{StaticResource StyleDataGrid}"
+                PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs_Loaded"
+                CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="Auto"/>
+                            <!--<Setter Property="Background" Value="#F8FAFD"/>-->
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                            
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White" MouseEnter="StackPanel_MouseEnter" MouseLeave="StackPanel_MouseLeave">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click"  BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}" FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="מסמכים" Background="#F8FAFD">
+                <DataGrid Name="dataGridDocs6" Style="{StaticResource StyleDataGrid}"
+                PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs6_Loaded"
+                CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click" BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}" FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="הנחיות" Background="#F8FAFD">
+                <DataGrid Name="dataGridDocs1" Style="{StaticResource StyleDataGrid}"
+                PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs1_Loaded"
+                CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click" BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}" FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="הקצאות (פלדות)"  Background="#F8FAFD">
+                <DataGrid Name="dataGridDocs2" Style="{StaticResource StyleDataGrid}"
+                PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs2_Loaded"
+                CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click" BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}" FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="השאלות/הקצאות" Background="#F8FAFD">
+            <DataGrid Name="dataGridDocs3" Style="{StaticResource StyleDataGrid}"
+            PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs3_Loaded"
+            CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click" BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}" FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header='בנ"מ' Background="#F8FAFD">
+            <DataGrid Name="dataGridDocs4" Style="{StaticResource StyleDataGrid}"
+            PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs4_Loaded"
+            CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click" BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}" FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="השאלות (פיתוח)" Background="#F8FAFD">
+            <DataGrid Name="dataGridDocs5" Style="{StaticResource StyleDataGrid}"
+            PreviewKeyDown="dataGridDocs_PreviewKeyDown" MouseLeftButtonDown="dataGridDocs_MouseLeftButtonDown" Loaded="dataGridDocs5_Loaded"
+            CellStyle="{StaticResource DataGridCellStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Height" Value="Auto"/>
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Nispah}" Value="0">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="Background" Value="#F8FAFD"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,8,0,0" Orientation="Vertical" Background="White">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,50,0" Background="White">
+                                            <Button x:Name="ViewDocOnly" Click="ViewDocOnly_Click" BorderThickness="0" Foreground="Black" Background="White" Width="30" Height="25"  FontSize="14"
+                                Style="{StaticResource mouseontop}">
+                                                <Image Source="/DocumentsModule;component/Word.png" Margin="1,1,1,1" VerticalAlignment="Center"/>
+                                            </Button>
+                                            <TextBlock Name="OpenNispah" MouseLeftButtonUp="OpenNispah_MouseLeftButtonUp" Text="{Binding HasAtt}"  
+                                            Background="Transparent"/>
+                                            <TextBlock Text="{Binding Nadon}" TextDecorations="Underline" Foreground="DarkBlue" FontWeight="Bold" Margin="5,0,10,0"
+                                            MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding NispahJustNumber}"  Foreground="Pink"  FontWeight="Bold" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Taarich}" FontStyle="Italic" Margin="0,0,5,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Sholeah}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding Shotef}" FontStyle="Italic" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding DocStatus}" FontStyle="Italic" Margin="10,0,0,0" FontWeight="Bold" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                                            <TextBlock Text="{Binding MechutavStr}" FontStyle="Italic" Margin="10,0,10,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Background="White">
+                                                        <ToolTip.Content>
+                                                            <TextBlock Text="{Binding Mehutav}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White">
+                                                            </TextBlock>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding NewTxt}" Margin="0,0,50,2" Foreground="Gray" FontSize="14" FontFamily="Calibri" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"> <!--="{Binding Text, RelativeSource={RelativeSource Self}}">-->
+                                            <TextBlock.ToolTip>
+                                                <ToolTip Background="White">
+                                                    <ToolTip.Content>
+                                                        <TextBlock Text="{Binding NewTxt}"
+                                                        TextWrapping="Wrap"
+                                                        FontFamily="Calibri"
+                                                        FontSize="14"
+                                                        Background="White"
+                                                        Width="750"
+                                                        Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=ActualWidth, Converter={StaticResource PercentageConverter}, ConverterParameter=0.8}">
+                                                        </TextBlock>
+                                                    </ToolTip.Content>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                            </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</UserControl>

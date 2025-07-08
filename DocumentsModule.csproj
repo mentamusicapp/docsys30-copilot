@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07A304AF-FE3C-40BC-8EC0-2170451BE083}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DocumentsModule</RootNamespace>
+    <AssemblyName>DocumentsModule</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>H:\Dev\DocumentsModule\DocumentsModule\DocumentsModule_Debug\publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>\\mantakapp\Vol_2\Prog\DOT NET\עומר\DocumentsModule\DocumentsModule_Debug\DocumentsModule_Debug\bin\Release\</UpdateUrl>
+    <TargetCulture>he-IL</TargetCulture>
+    <ProductName>מודול מסמכים חדש</ProductName>
+    <PublisherName>mantak</PublisherName>
+    <ApplicationRevision>110</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6F8A093E38D87B7CC2939C3291EBA6BC7D9F4341</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>DocumentsModule_Debug_1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Assets\MantakDocuments.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Word, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Office, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomLabel.Designer.cs">
+      <DependentUpon>CustomLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentHandling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentHandling.Designer.cs">
+      <DependentUpon>DocumentHandling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumenstImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumenstImport.Designer.cs">
+      <DependentUpon>DocumenstImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsExport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentsExport.Designer.cs">
+      <DependentUpon>DocumentsExport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentsMenu.Designer.cs">
+      <DependentUpon>DocumentsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentsSearch.Designer.cs">
+      <DependentUpon>DocumentsSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentsTemplates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentsTemplates.Designer.cs">
+      <DependentUpon>DocumentsTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DragDropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DragDropForm.Designer.cs">
+      <DependentUpon>DragDropForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnviromentVariables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnviromentVariables.Designer.cs">
+      <DependentUpon>EnviromentVariables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExecSqlScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExecSqlScript.Designer.cs">
+      <DependentUpon>ExecSqlScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Folder.cs" />
+    <Compile Include="FoldersUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FoldersUpdate.Designer.cs">
+      <DependentUpon>FoldersUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForMeToSign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForMeToSign.Designer.cs">
+      <DependentUpon>ForMeToSign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MantakDBDataSetDocuments.cs">
+      <DependentUpon>MantakDBDataSetDocuments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MantakDBDataSetDocuments.Designer.cs">
+      <DependentUpon>MantakDBDataSetDocuments.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MyDocsStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyDocsStatus.Designer.cs">
+      <DependentUpon>MyDocsStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyGlobals.cs" />
+    <Compile Include="NewDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDocument.Designer.cs">
+      <DependentUpon>NewDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\office.cs" />
+    <Compile Include="PreviewHandlerHost.cs" />
+    <Compile Include="priview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="priview.Designer.cs">
+      <DependentUpon>priview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PublicFuncsNvars.cs" />
+    <Compile Include="PublishSignedDocs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="publishSignedDocs.Designer.cs">
+      <DependentUpon>PublishSignedDocs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recipient.cs" />
+    <Compile Include="RecipientList.cs" />
+    <Compile Include="RecipientListsUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecipientListsUpdate.Designer.cs">
+      <DependentUpon>RecipientListsUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaveTxt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveTxt.Designer.cs">
+      <DependentUpon>SaveTxt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPatternScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPatternScreen.Designer.cs">
+      <DependentUpon>SearchPatternScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Services.Designer.cs">
+      <DependentUpon>Services.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShoshFolder.cs" />
+    <Compile Include="Signature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Signature.Designer.cs">
+      <DependentUpon>Signature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThreadState.cs" />
+    <Compile Include="TransferToSign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferToSign.Designer.cs">
+      <DependentUpon>TransferToSign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateINI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateINI.Designer.cs">
+      <DependentUpon>UpdateINI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl2.xaml.cs">
+      <DependentUpon>UserControl2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UsersUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersUpdate.Designer.cs">
+      <DependentUpon>UsersUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\DataGridDocs.xaml.cs">
+      <DependentUpon>DataGridDocs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\DataTableFilters.cs" />
+    <Compile Include="View\UserControls\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\PercentageConverter.cs" />
+    <Compile Include="View\UserControls\search.xaml.cs">
+      <DependentUpon>search.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControls\ToolBar.xaml.cs">
+      <DependentUpon>ToolBar.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CustomLabel.resx">
+      <DependentUpon>CustomLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumenstImport.resx">
+      <DependentUpon>DocumenstImport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentHandling.resx">
+      <DependentUpon>DocumentHandling.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentsExport.resx">
+      <DependentUpon>DocumentsExport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentsMenu.resx">
+      <DependentUpon>DocumentsMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentsSearch.he-IL.resx">
+      <DependentUpon>DocumentsSearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentsSearch.resx">
+      <DependentUpon>DocumentsSearch.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentsTemplates.resx">
+      <DependentUpon>DocumentsTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DragDropForm.resx">
+      <DependentUpon>DragDropForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnviromentVariables.resx">
+      <DependentUpon>EnviromentVariables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExecSqlScript.resx">
+      <DependentUpon>ExecSqlScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FoldersUpdate.resx">
+      <DependentUpon>FoldersUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForMeToSign.resx">
+      <DependentUpon>ForMeToSign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyDocsStatus.resx">
+      <DependentUpon>MyDocsStatus.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDocument.resx">
+      <DependentUpon>NewDocument.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="priview.resx">
+      <DependentUpon>priview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="publishSignedDocs.resx">
+      <DependentUpon>PublishSignedDocs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecipientListsUpdate.resx">
+      <DependentUpon>RecipientListsUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaveTxt.resx">
+      <DependentUpon>SaveTxt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPatternScreen.resx">
+      <DependentUpon>SearchPatternScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Services.resx">
+      <DependentUpon>Services.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Signature.resx">
+      <DependentUpon>Signature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferToSign.resx">
+      <DependentUpon>TransferToSign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateINI.resx">
+      <DependentUpon>UpdateINI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersUpdate.resx">
+      <DependentUpon>UsersUpdate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram2.cd" />
+    <None Include="DocumentsModule_Debug_1_TemporaryKey.pfx" />
+    <None Include="DocumentsModule_Debug_TemporaryKey.pfx" />
+    <None Include="MantakDBDataSetDocuments.xsc">
+      <DependentUpon>MantakDBDataSetDocuments.xsd</DependentUpon>
+    </None>
+    <None Include="MantakDBDataSetDocuments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MantakDBDataSetDocuments.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MantakDBDataSetDocuments.xss">
+      <DependentUpon>MantakDBDataSetDocuments.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Ori-and-Blind-Forest %282%29.jpg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Word.png" />
+    <Resource Include="Assets\advancedsearch.png" />
+    <Resource Include="Assets\advanced2.png" />
+    <Resource Include="Assets\advanced3.png" />
+    <Resource Include="Assets\advanced4.png" />
+    <Resource Include="Assets\advanced5.png" />
+    <Resource Include="Assets\advanced6.png" />
+    <Resource Include="Assets\advanced7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\documents module icon.ICO" />
+    <Resource Include="Assets\eye.png" />
+    <Resource Include="Assets\FinalSearch.png" />
+    <Resource Include="Assets\FinalSearch1.png" />
+    <Resource Include="Assets\Logo.png" />
+    <Resource Include="Assets\DocumentsSign.png" />
+    <Resource Include="Assets\Home.png" />
+    <Resource Include="Assets\Email.png" />
+    <Resource Include="Assets\LogoSD.png" />
+    <Resource Include="Assets\LogoSDRed.png" />
+    <Resource Include="Assets\LogoSDR.png" />
+    <Resource Include="Assets\LogoSDS.png" />
+    <Content Include="Assets\MantakDocuments.ico" />
+    <Resource Include="Assets\MoveToSign.png" />
+    <Resource Include="Assets\NewWithText.png" />
+    <Content Include="Assets\OneDrive.ico" />
+    <None Include="Resources\איתן.jpg" />
+    <None Include="Resources\טנק 1.jpg" />
+    <None Include="Resources\טנק 2.JPG" />
+    <None Include="Resources\טנק 3.jpg" />
+    <None Include="Resources\נמר.jpg" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\טנק_חדש.jpeg" />
+    <None Include="Resources\לוגו של מנתק.png" />
+    <None Include="Resources\שירות.png" />
+    <None Include="Resources\חיפוש.png" />
+    <None Include="Resources\מסמך_חדש.png" />
+    <None Include="Resources\תיקים.png" />
+    <None Include="Resources\משתמשים.png" />
+    <None Include="Resources\רשימות_תפוצה.png" />
+    <None Include="Resources\מסמכים_לחתימהתי.png" />
+    <None Include="Resources\העברה_לחתימה.png" />
+    <None Include="Resources\מסמכים_להפצה.png" />
+    <None Include="Resources\סטטוס_מסמכים.png" />
+    <None Include="Resources\תיקים_רקע_לבן.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\חיפוש_2.png" />
+    <None Include="Resources\חדש_2.png" />
+    <None Include="Resources\מסמכים_לחתימתי_2.png" />
+    <None Include="Resources\העברה_לחתימה_2.png" />
+    <None Include="Resources\סטטוס_מסמכים_2.png" />
+    <None Include="Resources\מסמכים_להפצה_2.png" />
+    <None Include="Resources\תיקיה סופית.png" />
+    <None Include="Resources\תיקיה סופית1.png" />
+    <None Include="Resources\סמל.png" />
+    <None Include="Resources\תיקיה_קטנה.png" />
+    <None Include="Resources\10.png" />
+    <None Include="Resources\רקע_לבן.png" />
+    <None Include="Resources\2.bmp" />
+    <None Include="Resources\תיקיה3.png" />
+    <None Include="Resources\מסמכים_לחתימתי.png" />
+    <None Include="Resources\סמל_רקע.png" />
+    <None Include="Resources\שירות_רקע.png" />
+    <None Include="Resources\שירות_רקע_2.png" />
+    <None Include="Resources\תמונה1.png" />
+    <None Include="Resources\תמונה2.png" />
+    <None Include="Resources\מערכת_מסמכים2.png" />
+    <Resource Include="Assets\Picture2.png" />
+    <Resource Include="Assets\viewdoc.png" />
+    <Resource Include="Assets\viewdoc3.png" />
+    <Resource Include="Assets\search.png" />
+    <Resource Include="Assets\searchgray.png" />
+    <Resource Include="Assets\Settings.png" />
+    <Content Include="Assets\Person.png" />
+    <Resource Include="Assets\Person1.png" />
+    <Resource Include="Resources\homeRed.png" />
+    <Resource Include="Resources\mail.png" />
+    <Resource Include="Resources\move to sign.png" />
+    <Resource Include="Resources\sign.png" />
+    <Resource Include="Resources\mailRed.png" />
+    <Content Include="Assets\WORD.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ACTIVEXLib">
+      <Guid>{012F24C1-35B0-11D0-BF2D-0000E8D0D146}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Access.Dao">
+      <Guid>{4AC9E1DA-5BAD-4AC7-86E3-24F4CDCECA28}</Guid>
+      <VersionMajor>12</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel1">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>12</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word1">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="MSDATASRC">
+      <Guid>{7C0FFAB0-CD84-11D0-949A-00A0C91110ED}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="SearchIntegrationExeLib">
+      <Guid>{A68752EA-F302-48A4-B898-E437C6EAC39A}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSTOEE100">
+      <Guid>{AAB9C2AA-6036-4AE1-A41C-A40AB7F39520}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\DataGridDocs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\ToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

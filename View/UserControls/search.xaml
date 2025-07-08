@@ -1,0 +1,204 @@
+﻿<UserControl x:Class="DocumentsModule.View.UserControls.search"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DocumentsModule.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="300">
+    <UserControl.Resources>
+        <!--<Style x:Name="BottimBorderTextBox" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>-->
+        <Style x:Name="Tooltip" TargetType="ToolTip">
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <!--<Style TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Border x:Name="border"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Width="20" Height="20"
+                                    HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <Path x:Name="checkMark"
+                                  Stroke="Black"
+                                  StrokeThickness="2"
+                                  Data="M 0 10 L 10 10 L 20 0"
+                                  Stretch="None"
+                                  StrokeDashArray="1,20"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  RenderTransformOrigin="0,0">
+                                <Path.RenderTransform>
+                                    <TranslateTransform X="-20"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="checkMark"
+                                                             Storyboard.TargetProperty="StrokeDashArrsy[1]"
+                                                             From="20" To="0" Duration="0:0:0.2"/>
+                                            <DoubleAnimation Storyboard.TargetName="checkMark"
+                                                             Storyboard.TargetProperty="(Path.RenderTransform).(TranslateTransform.X)"
+                                                             From="-20" To="0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+    </UserControl.Resources>
+    <Grid PreviewKeyDown="Grid_PreviewKeyDown" Background="#F8FAFD">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border  Padding="5" BorderThickness="1" BorderBrush="Transparent" CornerRadius="20" Margin="400,0,0,0" Height="40" Background="#E9EEF6">
+            <TextBox x:Name="tbSearch" VerticalAlignment="Center"
+                     FontSize="14" FontWeight="Light" Background="Transparent" Margin="0,0,50,0"
+                     TextChanged="tbSearch_TextChanged" FlowDirection="RightToLeft" BorderThickness="0"/>
+            
+        </Border>
+        <TextBlock x:Name="tbPlaceHolder" Text="חיפוש במערכת" FontSize="12" FontWeight="Light"
+                    Foreground="Black" VerticalAlignment="Center" Margin="400,0,25,0" 
+                   FlowDirection="RightToLeft" Panel.ZIndex="-1"/>
+        <Button x:Name="btnClear" Width="17" Height="17" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand"
+                Content="X" Background="Transparent" Foreground="Gray" BorderThickness="0" 
+                Click="btnClear_Click" FontSize="8" Margin="415,0,0,0" ToolTip="ניקוי סינון"/>
+        <Button x:Name="SearchBtn" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Cursor="Hand"
+                Background="Transparent" Foreground="Gray" BorderThickness="0" 
+                Click="SearchButton_Click" FontSize="8" Margin="0,0,20,0" ToolTip="חיפוש">
+            <Image Source="/DocumentsModule;component/FinalSearch1.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill" Margin="2"/>
+        </Button>
+        <Button x:Name="advancedSearch" Width="22" Height="22" Margin="350,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Cursor="Hand"
+                Click="Button_Click" ToolTip="חיפוש מתקדם">
+            <Image Source="/DocumentsModule;component/advanced7.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0" Stretch="Fill"/>
+        </Button>
+        <Label x:Name="results" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+
+        <Popup x:Name="AdvancedSearchPopup" StaysOpen="False" PlacementTarget="{Binding ElementName=advancedSearch}"
+              AllowsTransparency="True"
+               IsOpen="False" Placement="Bottom" Width="295">
+            <Border Background="White" BorderBrush="#F8FAFD" BorderThickness="3" Padding="15" Width="295" Margin="0" CornerRadius="20">
+             <!--   <Border.Effect>
+                    <DropShadowEffect Color="Green" BlurRadius="10" ShadowDepth="5" Opacity="0.5"/>
+                </Border.Effect>-->
+                <StackPanel Background="White">
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <TextBlock Text="שוטף" Margin="0,0,10,0"/>
+                        <TextBox x:Name="FromShoteftx" Width="75" Height="17" Margin="8,0,0,10" BorderThickness="0,0,0,1"/>
+                        <TextBlock Text="-" Margin="29,0,0,0" />
+                        <TextBox x:Name="toShoteftx" Margin="28,0,0,10" Width="75" Height="17" BorderThickness="0,0,0,1"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <TextBlock Text="נדון"/>
+                        <TextBox x:Name="Nadontx" Width="211" Height="17" Margin="25,0,0,10" TextChanged="Nadontx_TextChanged" BorderThickness="0,0,0,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <TextBlock Text="ענף" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                        <ComboBox x:Name="anafcombobox" VerticalAlignment="Center" Width="90" Height="20" Margin="26,0,0,10" BorderThickness="0.5" Background="LightBlue">
+                            <ComboBoxItem Content="הכל"/>
+                            <ComboBoxItem Content="לשכה"/>
+                            <ComboBoxItem Content="פרוייקטים"/>
+                            <ComboBoxItem Content="תקציבים"/>
+                            <ComboBoxItem Content="ארגון"/>
+                            <ComboBoxItem Content="ייצור"/>
+                            <ComboBoxItem Content="פיתוח"/>
+                            <ComboBoxItem Content="סייף"/>
+                            <ComboBoxItem Content="חלקה"/>
+                            <ComboBoxItem Content="אחר"/>
+                        </ComboBox>
+                        <TextBlock Text="תוצאות" VerticalAlignment="Center"  Margin="22,0,0,10"/>
+                        <ComboBox x:Name="Tokzaot"  Width="55" Height="20" Margin="10,0,0,10">
+                            <ComboBoxItem Content="הכל"/>
+                            <ComboBoxItem Content="1000"/>
+                            <ComboBoxItem Content="5000"/>
+                            <ComboBoxItem Content="10000"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  FlowDirection="RightToLeft">
+                        <TextBlock Text="תקופה" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                        <ComboBox x:Name="tkufa" VerticalAlignment="Center" Margin="14,0,0,10" Width="90" Height="20" BorderThickness="0.5" Background="LightBlue">
+                            <ComboBoxItem Content="הכל" Tag="all"/>
+                            <ComboBoxItem Content="יום" Tag="d"/>
+                            <ComboBoxItem Content="שבוע"  Tag="w"/>
+                            <ComboBoxItem Content="חודש" Tag="m"/>
+                            <ComboBoxItem Content="חדשיים" Tag="2m"/>
+                            <ComboBoxItem Content="רבעיון" Tag="3m"/>
+                            <ComboBoxItem Content="חציון" Tag="6m"/>
+                            <ComboBoxItem Content="שנה" Tag="y" IsSelected="True"/>
+                            <ComboBoxItem Content="שנתיים" Tag="2y"/>
+                            <ComboBoxItem Content="שלוש שנים" Tag="3y"/>
+                            <ComboBoxItem Content="חמש שנים" Tag="5y"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <TextBlock Text="כותב / שולח / חותם" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                        <ComboBox x:Name="usercombobox" Width="158" Height="17" Margin="10,0,0,10"
+                                  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" Loaded="usercombobox_Loaded" FlowDirection="RightToLeft"/>
+                        <!--<TextBox x:Name="UserTextBox" Width="217" Height="17" Margin="10,0,0,10" TextChanged="UserTextBox_TextChanged"/>-->
+                        <!--PreviewMouseDown="UserTextBox_PreviewMouseDown"-->
+                    </StackPanel>
+                    
+                    <Expander Header="סינון נוסף" HorizontalAlignment="Center" Margin="0,0,0,5" IsExpanded="True">
+                        <StackPanel Orientation="Vertical" Margin="0,5,0,0">
+                            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                                <TextBlock Text="מכותב" VerticalAlignment="Center" Margin="0,0,0,10"/>
+                                <ComboBox x:Name="mehutavcombobox" Width="138" Height="20" Margin="10,0,0,10"
+                                  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" FlowDirection="RightToLeft"/>
+                                <ComboBox x:Name="SugMehutav" VerticalAlignment="Center" Margin="10,0,5,10" Width="65" Height="20" BorderThickness="0.5" Background="LightBlue">
+                                    <ComboBoxItem Content="הכל"/>
+                                    <ComboBoxItem Content="לידיעה"/>
+                                    <ComboBoxItem Content="לפעולה"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                                <TextBlock Text="תיק" Margin="0,2,10,0"/>
+                                <ComboBox x:Name="tikcombobox" Width="52" Height="17" Margin="0,0,10,0" SelectionChanged="tikcombobox_SelectionChanged"
+                                  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" FlowDirection="RightToLeft"/>
+                                <TextBlock Text="פרוייקט" Margin="60,2,10,0"/>
+                                <ComboBox x:Name="procombobox" Width="60" Height="17" Margin="0,0,0,0" SelectionChanged="procombobox_SelectionChanged"
+                                  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" FlowDirection="RightToLeft"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"  FlowDirection="RightToLeft" Margin="0,10,0,0">
+                                <CheckBox x:Name="ispail" Content="כולל לא פעילים" Checked="IsPail_Checked" VerticalAlignment="Center" Margin="0,0,10,0" Width="100" Height="20" BorderThickness="0.5" Background="LightGray" FlowDirection="RightToLeft"/>
+                                <!--<TextBlock Text="כולל לא פעילים" VerticalAlignment="Center" Margin="10,5,0,10"/>-->
+                                <TextBlock Text="הופץ" VerticalAlignment="Center" Margin="56,0,0,10"/>
+                                <ComboBox x:Name="hufatz" VerticalAlignment="Center" Margin="15,0,0,10" Width="50" Height="20" BorderThickness="0.5" Background="LightBlue">
+                                    <ComboBoxItem Content="הכל"/>
+                                    <ComboBoxItem Content="לא"/>
+                                    <ComboBoxItem Content="כן"/>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                                <CheckBox x:Name="isMainDoc" VerticalAlignment="Center" Margin="0,0,10,0" Width="100" Height="20" BorderThickness="0.5" Background="LightGray" FlowDirection="RightToLeft" IsThreeState="True" IsChecked="{x:Null}">יש מסמך</CheckBox>
+                                <CheckBox x:Name="isAttDoc"  VerticalAlignment="Center" Margin="0,0,10,0" Width="100" Height="20" BorderThickness="0.5" Background="LightGray" FlowDirection="RightToLeft" IsThreeState="True" IsChecked="{x:Null}">יש נספח</CheckBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+                    <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <Button Content="חיפוש" Width="100" Height="25" Click="SearchButton_Click" Background="LightGreen" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                        <Button Content="נקה סינון" Width="100" Height="25" Click="ClearSearchAdvanced_Click" HorizontalAlignment="Left" Margin="44,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                
+            </Border>
+        </Popup>
+        
+    </Grid>
+</UserControl>

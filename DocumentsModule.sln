@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentsModule", "DocumentsModule.csproj", "{07A304AF-FE3C-40BC-8EC0-2170451BE083}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FC52597-EB03-4CF4-BB21-FBBB35E66D83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07A304AF-FE3C-40BC-8EC0-2170451BE083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07A304AF-FE3C-40BC-8EC0-2170451BE083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07A304AF-FE3C-40BC-8EC0-2170451BE083}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07A304AF-FE3C-40BC-8EC0-2170451BE083}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C60082D-8AC4-4224-A572-08FA39946132}
+	EndGlobalSection
+EndGlobal
